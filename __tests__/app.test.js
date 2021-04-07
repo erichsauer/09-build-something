@@ -10,16 +10,28 @@ describe('09-build-something routes', () => {
 
   let testPlant;
   beforeEach(async () => {
-    testPlant = await request(app).post({
+    const { body } = await request(app).post('/api/v1/plants').send({
       name: 'planty',
       favorite_season: 'spring',
       flowering: true,
       zone: 9,
     });
+    testPlant = body;
   });
 
-  it('should get the test plant when hit', async () => {
-    const res = await request(app).get('/');
-    expect(res.body).toEqual(testPlant);
+  it('should add a plant when hit', async () => {
+    const res = await request(app).post('/api/v1/plants').send({
+      name: 'flower pal',
+      favorite_season: 'summer',
+      flowering: true,
+      zone: 7,
+    });
+    expect(res.body).toEqual({
+      id: expect.any(String),
+      name: 'flower pal',
+      favoriteSeason: 'summer',
+      flowering: true,
+      zone: 7,
+    });
   });
 });
