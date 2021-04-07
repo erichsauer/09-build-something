@@ -12,7 +12,7 @@ describe('09-build-something routes', () => {
   beforeEach(async () => {
     const { body } = await request(app).post('/api/v1/plants').send({
       name: 'planty',
-      favorite_season: 'spring',
+      favoriteSeason: 'spring',
       flowering: true,
       zone: 9,
     });
@@ -22,7 +22,7 @@ describe('09-build-something routes', () => {
   it('should add a plant when hit', async () => {
     const res = await request(app).post('/api/v1/plants').send({
       name: 'flower pal',
-      favorite_season: 'summer',
+      favoriteSeason: 'summer',
       flowering: true,
       zone: 7,
     });
@@ -40,8 +40,29 @@ describe('09-build-something routes', () => {
     expect(res.body[0]).toEqual(testPlant);
   });
 
-  it('should retrieve one plant', async () => {
+  it('should retrieve one plant by id', async () => {
     const res = await request(app).get(`/api/v1/plants/${testPlant.id}`);
+    expect(res.body).toEqual(testPlant);
+  });
+
+  it('should update a plant by id', async () => {
+    const res = await request(app).put(`/api/v1/plants/${testPlant.id}`).send({
+      name: 'Plantsy',
+      favoriteSeason: 'autumn',
+      flowering: false,
+      zone: 9,
+    });
+    expect(res.body).toEqual({
+      id: testPlant.id,
+      name: 'Plantsy',
+      favoriteSeason: 'autumn',
+      flowering: false,
+      zone: 9,
+    });
+  });
+
+  it('should delete a plant by id', async () => {
+    const res = await request(app).delete(`/api/v1/plants/${testPlant.id}`);
     expect(res.body).toEqual(testPlant);
   });
 });
