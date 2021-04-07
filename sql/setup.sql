@@ -7,12 +7,12 @@ CREATE TABLE plants (
   favorite_season TEXT NOT NULL,
   flowering BOOLEAN NOT NULL,
   zone INT NOT NULL
-)
+);
 
--- CREATE TABLE animals (
---   id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
---   name TEXT NOT NULL,
---   day_or_night TEXT NOT NULL,
---   furry BOOLEAN NOT NULL,
---   number_of_legs INT NOT NULL
--- )
+CREATE TABLE animals (
+  id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  name TEXT NOT NULL,
+  day_or_night TEXT NOT NULL,
+  furry BOOLEAN NOT NULL,
+  number_of_legs INT NOT NULL
+)

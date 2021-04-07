@@ -34,4 +34,14 @@ describe('09-build-something routes', () => {
       zone: 7,
     });
   });
+
+  it('should retrieve all plants', async () => {
+    const res = await request(app).get(`/api/v1/plants`);
+    expect(res.body[0]).toEqual(testPlant);
+  });
+
+  it('should retrieve one plant', async () => {
+    const res = await request(app).get(`/api/v1/plants/${testPlant.id}`);
+    expect(res.body).toEqual(testPlant);
+  });
 });
