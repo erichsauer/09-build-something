@@ -97,7 +97,7 @@ describe('animal routes', () => {
 
   it('should retrieve all animals', async () => {
     const { body } = await request(app).get('/api/v1/animals');
-    expect(body).toEqual(testAnimal);
+    expect(body[0]).toEqual(testAnimal);
   });
 });
 
