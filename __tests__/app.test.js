@@ -104,6 +104,22 @@ describe('animal routes', () => {
     const { body } = await request(app).get(`/api/v1/animals/${testAnimal.id}`);
     expect(body).toEqual(testAnimal);
   });
+
+  it('should update an animal by id', async () => {
+    const { body } = request(app).put(`/api/v1/animals/${testAnimal.id}`).send({
+      name: 'flutter-by',
+      dayOrNight: 'day',
+      furry: false,
+      numberOfLegs: 6,
+    });
+    expect(body).toEqual({
+      id: testAnimal.id,
+      name: 'flutter-by',
+      dayOrNight: 'day',
+      furry: false,
+      numberOfLegs: 6,
+    });
+  });
 });
 
 afterAll(() => pool.end());
