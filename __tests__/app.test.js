@@ -99,6 +99,11 @@ describe('animal routes', () => {
     const { body } = await request(app).get('/api/v1/animals');
     expect(body[0]).toEqual(testAnimal);
   });
+
+  it('should retrieve one animal by id', async () => {
+    const { body } = await request(app).get(`/api/vi/animals/${testAnimal.id}`);
+    expect(body).toEqual(testAnimal);
+  });
 });
 
 afterAll(() => pool.end());
