@@ -80,19 +80,24 @@ describe('animal routes', () => {
   });
 
   it('should add an animal', async () => {
-    const res = await request(app).post('/api/v1/animals').send({
+    const { body } = await request(app).post('/api/v1/animals').send({
       name: 'skipper',
       dayOrNight: 'day',
       furry: false,
       numberOfLegs: 0,
     });
-    expect(res.body).toEqual({
+    expect(body).toEqual({
       id: expect.any(String),
       name: expect.any(String),
       dayOrNight: expect.any(String),
       furry: expect.any(Boolean),
       numberOfLegs: expect.any(Number),
     });
+  });
+
+  it('should retrieve all animals', async () => {
+    const { body } = await request(app).get('/api/v1/animals');
+    expect(body).toEqual(testAnimal);
   });
 });
 
