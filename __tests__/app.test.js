@@ -122,6 +122,13 @@ describe('animal routes', () => {
       numberOfLegs: 6,
     });
   });
+
+  it('should delete an animal by id', async () => {
+    const { body } = await request(app).delete(
+      `/api/v1/animals/${testAnimal.id}`
+    );
+    expect(body).toEqual(testAnimal);
+  });
 });
 
 afterAll(() => pool.end());
