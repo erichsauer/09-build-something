@@ -101,7 +101,7 @@ describe('animal routes', () => {
   });
 
   it('should retrieve one animal by id', async () => {
-    const { body } = await request(app).get(`/api/vi/animals/${testAnimal.id}`);
+    const { body } = await request(app).get(`/api/v1/animals/${testAnimal.id}`);
     expect(body).toEqual(testAnimal);
   });
 });
